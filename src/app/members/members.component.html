@@ -1,6 +1,5 @@
 <div *ngFor='let member of members'>
-  <p>
-    {{member.officialName}}
-  </p>
+  <h2 class="member-name" (click)="showMemberDetails(member)">
+    <a [routerLink]="['/members', member._id]">{{member.officialName}}</a>
+  </h2>
 </div>
-

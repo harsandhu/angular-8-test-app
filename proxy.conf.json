@@ -1,0 +1,10 @@
+{
+    "/members": {
+      "target": "https://clerkapi.azure-api.net/",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/members": "Members?key=da13cc0dce344b3fa36b500e01602df8"
+      }
+    }
+  }
