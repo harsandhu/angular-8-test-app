@@ -7,12 +7,16 @@ import { MembersComponent } from './members/members.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MemberComponent } from './member/member.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AppLoaderComponent } from './app-loader/app-loader.component';
+import { VoteComponent } from './vote/vote.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MembersComponent,
-    MemberComponent
+    MemberComponent,
+    AppLoaderComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,

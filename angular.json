@@ -115,6 +115,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "membervotes-app"
+    }
+  },
+  "defaultProject": "membervotes-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "styl"
+    }
+  }
 }

@@ -1,3 +1,18 @@
-<p>
-  member works!
-</p>
+<div class="member-page">
+  <div class="member-detail">
+    <div *ngIf="member; else appLoader" class="member">
+        <div class="name">{{member.officialName}}</div>
+    </div>
+    
+  </div>
+  <div class="votes-detail">
+    <div *ngIf="votes; else appLoader"  class="voter">
+      <div *ngFor='let vote of votes'>
+          <app-vote  [voteObj]="vote"></app-vote>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #appLoader>
+  <app-loader></app-loader>
+</ng-template>

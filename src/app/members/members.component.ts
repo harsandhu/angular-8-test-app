@@ -2,25 +2,23 @@ import { Component, OnInit, ɵisDefaultChangeDetectionStrategy } from '@angular/
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { MembersStoreService } from '../members-store.service';
 
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.css']
+  styleUrls: ['./members.component.styl'],
+  providers: [MembersStoreService]
 })
 export class MembersComponent implements OnInit {
-  members: any[];
-  constructor(private http: HttpClient) { }
+  members: Array<Member>;
+  constructor(private membersStoreService: MembersStoreService) { }
 
   ngOnInit() {
-    this.fetchMembers().subscribe(data=> this.members = data.results);
+    this.membersStoreService.fetchMembers().subscribe(data=> {
+      this.membersStoreService.setMembers(data.results);
+      this.members = this.membersStoreService.getMembers();
+    });
   }
-
-  showMemberDetails(member):any {
-    console.log(member);
-  }
-
-  fetchMembers(): Observable<any>{
-    return this.http.get("/members");
-  }
+  
 }

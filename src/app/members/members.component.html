@@ -1,5 +1,5 @@
 <div *ngFor='let member of members'>
-  <h2 class="member-name" (click)="showMemberDetails(member)">
-    <a [routerLink]="['/members', member._id]">{{member.officialName}}</a>
+  <h2 class="member-name">
+    <a [routerLink]="['/members', member._id]" [state]="{member: member}">{{member.officialName}}</a>
   </h2>
 </div>
