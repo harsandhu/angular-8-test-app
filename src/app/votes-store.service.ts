@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VotesStoreService {
-  private votes: any[]
+  private votes: any[];
+  private pagination: any;
 
   constructor(private http: HttpClient) {  }
 
@@ -18,11 +19,19 @@ export class VotesStoreService {
     this.votes = value;
   }
 
-  fetchVotesById(congressId): Observable<any>{
-    return this.http.get(this.getVotesUrl(congressId));
+  setPagination(value){
+    this.pagination = value;
   }
 
-  getVotesUrl(congressId){
-    return `/votes?key=da13cc0dce344b3fa36b500e01602df8&$filter=superEvent/superEvent/congressNum eq '${congressId}'`;
+  getPagination(){
+    return this.pagination;
+  }
+
+  fetchVotesById(congressId, skipCount): Observable<any>{
+    return this.http.get(this.getVotesUrl(congressId,skipCount));
+  }
+
+  getVotesUrl(congressId,skipCount){
+    return `/votes?key=da13cc0dce344b3fa36b500e01602df8&$filter=superEvent/superEvent/congressNum eq '${congressId}'&$skip=${skipCount}`;
   }
 }

@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MembersStoreService {
 private members: Array<Member>
+private pagination: Object;
 
   constructor(private http: HttpClient) {  }
 
@@ -18,8 +19,16 @@ private members: Array<Member>
     this.members = value;
   }
 
-  fetchMembers(): Observable<any>{
-    return this.http.get("/members");
+  setPagination(value){
+    this.pagination = value;
+  }
+
+  getPagination(){
+    return this.pagination;
+  }
+
+  fetchMembers(skipCount: Number): Observable<any>{
+    return skipCount? this.http.get(`/members?$skip=${skipCount}&key=da13cc0dce344b3fa36b500e01602df8`): this.http.get("/members?key=da13cc0dce344b3fa36b500e01602df8");
   }
 
   getMemberById(id){

@@ -1,5 +1,10 @@
-<div *ngFor='let member of members'>
-  <h2 class="member-name">
-    <a [routerLink]="['/members', member._id]" [state]="{member: member}">{{member.officialName}}</a>
-  </h2>
+<app-pagination *ngIf="pagination" [pagination]="pagination" (pageNumberSelected)="fetchPage($event)"></app-pagination>
+<div class="member-wrapper" *ngIf="!isLoading; else appLoader">
+  <div *ngFor='let member of members' class="app-card">
+    <a [routerLink]="['/members', member._id]" class="heading" [state]="{member: member}">{{member.officialName}}</a>
+    <div class="divider"></div>
+  </div>
 </div>
+<ng-template #appLoader>
+  <app-loader></app-loader>
+</ng-template>

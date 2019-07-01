@@ -1,0 +1,14 @@
+<div class="app-pagination">
+  <div class="three-dots" *ngIf="getShowLeftPagesArrow()" (click)="decrementPaginationPages()">
+    <fa name="angle-double-left"></fa>
+  </div>
+  <div *ngFor="let pageNum of numPages | slice:paginationPageStart:paginationPageEnd;" 
+        class="page-num" 
+        [ngClass]="activePage === pageNum? 'active': ''"
+        (click)="fetchNextPage(pageNum)">
+      {{pageNum}}
+  </div>
+  <div class="three-dots" *ngIf="getShowRightPagesArrow()" (click)="incrementPaginationPages()">
+      <fa name="angle-double-right"></fa>
+  </div>
+</div>

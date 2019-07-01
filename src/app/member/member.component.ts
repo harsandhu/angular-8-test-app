@@ -16,6 +16,8 @@ export class MemberComponent implements OnInit {
 
   member: Member;
   votes: Array<Object>;
+  pagination: any;
+  isLoading: Boolean;
 
   constructor(private membersStoreService: MembersStoreService, 
               private route : ActivatedRoute,
@@ -23,13 +25,19 @@ export class MemberComponent implements OnInit {
 
   ngOnInit() {
     let member = history.state.member;
-    member ? this.member = member : this.fetchMember();
+    this.isLoading = true;
+    member ? this.setMember(member) : this.fetchMember(0);
   }
 
-  fetchMember(){
-    this.membersStoreService.fetchMembers().subscribe(data=> {
+  setMember(member){
+    this.member = member;
+    this.setVotesData(0);
+  }
+
+  fetchMember(skipCount){
+    this.membersStoreService.fetchMembers(skipCount).subscribe(data=> {
       this.setMemberData(data);
-      this.setVotedData();
+      this.setVotesData(0);
     });
   }
 
@@ -39,13 +47,22 @@ export class MemberComponent implements OnInit {
     this.member = this.membersStoreService.getMemberById(id);
   }
 
-  setVotedData(){
+  setVotesData(skipCount){
     const congressId = this.member.congresses[0].congressNum;
-    this.votesStoreService.fetchVotesById(congressId).subscribe(res=> {
+    this.votesStoreService.fetchVotesById(congressId, skipCount).subscribe(res=> {
       this.votesStoreService.setVotes(res.results);
       this.votes = this.votesStoreService.getVotes();
+      this.votesStoreService.setPagination(res.pagination);
+      this.pagination = this.votesStoreService.getPagination();
+      this.isLoading = false;
       console.log(this.votes);
     });
+  }
+  
+
+  fetchPage(skipCount){
+    this.isLoading = true;
+    this.setVotesData(skipCount);
   }
 
 }

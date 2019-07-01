@@ -9,6 +9,8 @@ import { MemberComponent } from './member/member.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppLoaderComponent } from './app-loader/app-loader.component';
 import { VoteComponent } from './vote/vote.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { VoteComponent } from './vote/vote.component';
     MembersComponent,
     MemberComponent,
     AppLoaderComponent,
-    VoteComponent
+    VoteComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]

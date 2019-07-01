@@ -6,7 +6,8 @@
     
   </div>
   <div class="votes-detail">
-    <div *ngIf="votes; else appLoader"  class="voter">
+    <div *ngIf="!isLoading; else appLoader"  class="voter">
+      <app-pagination *ngIf="pagination" [pagination]="pagination" (pageNumberSelected)="fetchPage($event)"></app-pagination>
       <div *ngFor='let vote of votes'>
           <app-vote  [voteObj]="vote"></app-vote>
       </div>
