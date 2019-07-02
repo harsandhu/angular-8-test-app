@@ -7,10 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VoteComponent implements OnInit {
   @Input() voteObj: Object;
+  openTab: Boolean;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleTab(){
+    this.openTab = !this.openTab;
   }
 
 }

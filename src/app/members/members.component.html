@@ -1,10 +1,20 @@
-<app-pagination *ngIf="pagination" [pagination]="pagination" (pageNumberSelected)="fetchPage($event)"></app-pagination>
+<div class="page-nav">
+  <div class="filters" *ngIf="!isLoading">
+    <div class="filter">
+      <label >Filter By Name: </label>
+      <input type="text" (keyup)="filterByName($event)">
+    </div>
+  </div>
+  <app-pagination *ngIf="pagination" [pagination]="pagination" (pageNumberSelected)="fetchPage($event)"></app-pagination>
+</div>
 <div class="member-wrapper" *ngIf="!isLoading; else appLoader">
-  <div *ngFor='let member of members' class="app-card">
+  <div *ngFor='let member of members' class="app-card" [ngClass]="member.active === 'no'? 'inactive': ''">
+    <div class="inactive-pill" *ngIf="member.active === 'no'">inactive</div>
     <a [routerLink]="['/members', member._id]" class="heading" [state]="{member: member}">{{member.officialName}}</a>
     <div class="divider"></div>
+    <div>{{member.congresses[0].position}}</div>
   </div>
 </div>
 <ng-template #appLoader>
-  <app-loader></app-loader>
+  <app-loader class="member"></app-loader>
 </ng-template>

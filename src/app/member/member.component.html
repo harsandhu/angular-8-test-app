@@ -1,12 +1,14 @@
 <div class="member-page">
   <div class="member-detail">
+    <h3>Member Details</h3>
     <div *ngIf="member; else appLoader" class="member">
-        <div class="name">{{member.officialName}}</div>
+      
     </div>
     
   </div>
   <div class="votes-detail">
     <div *ngIf="!isLoading; else appLoader"  class="voter">
+      <h3>Vote Details</h3>
       <app-pagination *ngIf="pagination" [pagination]="pagination" (pageNumberSelected)="fetchPage($event)"></app-pagination>
       <div *ngFor='let vote of votes'>
           <app-vote  [voteObj]="vote"></app-vote>

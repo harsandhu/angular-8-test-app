@@ -1,3 +1,8 @@
-<p>
-  {{voteObj.name}}
-</p>
+<div class="app-tab" (click)="toggleTab()">
+    <div class="heading">{{voteObj.name}}</div>
+    <div class="tab-details" [ngClass]="openTab? 'open': 'close'">
+      <div class="line"><div class="name">Committee:</div><div class="value">{{voteObj.committee}}</div></div>
+      <div class="line"><div class="name">Result:</div><div class="value">{{voteObj.result}}</div></div>
+      <div class="line"><div class="name">Vote Question:</div><div class="value">{{voteObj.voteQuestion}}</div></div>
+    </div>
+</div>

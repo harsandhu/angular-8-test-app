@@ -3,5 +3,6 @@ interface Member{
     additionalName: String
     bioGivenNames: Array<String>,
     congresses: Array<Congress>,
-    _id: String
+    _id: String,
+    officialName: String
 }

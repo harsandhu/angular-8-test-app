@@ -35,5 +35,11 @@ export class MembersComponent implements OnInit {
   fetchPage(skipCount){
     this.fetchMembers(skipCount);
   }
+
+  filterByName(e){
+    const filterTerm = e.target.value;
+    if(filterTerm === ''){ this.members = this.membersStoreService.getMembers(); }
+    this.members = this.members.filter(obj=> obj.officialName.toLowerCase().includes(filterTerm));
+  }
   
 }
