@@ -6,8 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pagination.component.styl']
 })
 export class PaginationComponent implements OnInit {
-  @Input() pagination: any;
-  @Output() pageNumberSelected = new EventEmitter<number>();
+  @Input() pagination: any; //pagination object passed in from parent components
+  @Output() pageNumberSelected = new EventEmitter<number>(); //when a page is selected, this event is emitted
 
   private numPages: Array<Number>;
   private activePage: number;
@@ -18,6 +18,7 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //create an array from total pages from the pagination object
     this.numPages = Array(this.pagination.number_pages).fill(0).map((x,i)=>i+1);
     this.activePage = this.pagination.page + 1;
     this.paginationPageStart = 0;

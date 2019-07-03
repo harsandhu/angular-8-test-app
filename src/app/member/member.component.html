@@ -2,9 +2,15 @@
   <div class="member-detail">
     <h3>Member Details</h3>
     <div *ngIf="member; else appLoader" class="member">
-      
+      <div class="image-card"></div>
+      <div class="properties">
+        <div class="line"><span class="name">Name:</span> <span class="value">{{member.officialName}}</span></div>
+        <div class="line"><span class="name">Chamber:</span> <span class="value">{{member.congresses[0].chamber}}</span></div>
+        <div class="line"><span class="name">Position:</span> <span class="value">{{member.congresses[0].position}}</span></div>
+        <div class="line"><span class="name">State Code:</span> <span class="value">{{member.congresses[0].stateCode}}</span></div>
+        <div class="line"><span class="name">Party Affiliations:</span> <span class="value">{{member.congresses[0].partyAffiliations[0].name}}</span></div>
+      </div>
     </div>
-    
   </div>
   <div class="votes-detail">
     <div *ngIf="!isLoading; else appLoader"  class="voter">
