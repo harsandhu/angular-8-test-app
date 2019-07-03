@@ -2,7 +2,7 @@
   <div class="member-detail">
     <h3>Member Details</h3>
     <div *ngIf="member; else appLoader" class="member">
-      <div class="image-card"></div>
+      <div class="image-card"><fa name="user" size="5x"></fa></div>
       <div class="properties">
         <div class="line"><span class="name">Name:</span> <span class="value">{{member.officialName}}</span></div>
         <div class="line"><span class="name">Chamber:</span> <span class="value">{{member.congresses[0].chamber}}</span></div>
